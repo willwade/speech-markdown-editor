@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Drawer, Menu, MenuItem, Card } from "@blueprintjs/core";
+import { Button, Drawer, Menu, MenuItem, Card, Classes } from "@blueprintjs/core";
 
 const tagHelp = {
   address: {
@@ -204,79 +204,153 @@ export const HelpButton = () => {
         onClose={() => setIsOpen(false)}
         title="Speech Markdown Help"
         size="500px"
+        position="right"
       >
-        <div style={{ padding: "20px" }}>
-          <h3>Select a Tag</h3>
-          <Menu>
-            {Object.keys(tagHelp)
-              .sort()
-              .map((key) => (
-                <MenuItem
-                  key={key}
-                  text={tagHelp[key].name}
-                  onClick={() => setSelectedTag(key)}
-                  active={selectedTag === key}
-                />
-              ))}
-          </Menu>
+        <div className={Classes.DRAWER_BODY}>
+          <div className={Classes.DIALOG_BODY}>
+            <h3>Select a Tag</h3>
+            <Menu style={{ maxHeight: "300px", overflowY: "auto" }}>
+              {Object.keys(tagHelp)
+                .sort()
+                .map((key) => (
+                  <MenuItem
+                    key={key}
+                    text={tagHelp[key].name}
+                    onClick={() => setSelectedTag(key)}
+                    active={selectedTag === key}
+                  />
+                ))}
+            </Menu>
 
-          {selectedTag && (
-            <Card style={{ marginTop: "20px" }}>
-              <h3>{tagHelp[selectedTag].name}</h3>
-              <p>
-                <strong>Description:</strong> {tagHelp[selectedTag].description}
-              </p>
-              <p>
-                <strong>Example:</strong>
-                <br />
-                <code>{tagHelp[selectedTag].example}</code>
-              </p>
-              {tagHelp[selectedTag].shortForm && (
-                <p>
-                  <strong>Short Form:</strong>
-                  <br />
-                  <code>{tagHelp[selectedTag].shortForm}</code>
-                </p>
-              )}
-              <p>
-                <strong>Platform Support:</strong> {tagHelp[selectedTag].platforms}
-              </p>
-              {tagHelp[selectedTag].note && (
-                <p>
-                  <strong>Note:</strong> {tagHelp[selectedTag].note}
-                </p>
-              )}
+            {selectedTag && (
+              <Card
+                elevation={2}
+                style={{
+                  marginTop: "20px",
+                  padding: "15px",
+                  backgroundColor: "#ffffff"
+                }}
+              >
+                <h3 style={{ marginTop: 0 }}>{tagHelp[selectedTag].name}</h3>
+                <div style={{ marginBottom: "10px" }}>
+                  <strong>Description:</strong>
+                  <div style={{ marginLeft: "10px", marginTop: "5px" }}>
+                    {tagHelp[selectedTag].description}
+                  </div>
+                </div>
+                <div style={{ marginBottom: "10px" }}>
+                  <strong>Example:</strong>
+                  <div style={{
+                    marginLeft: "10px",
+                    marginTop: "5px",
+                    padding: "8px",
+                    backgroundColor: "#f5f5f5",
+                    borderRadius: "3px",
+                    fontFamily: "monospace"
+                  }}>
+                    {tagHelp[selectedTag].example}
+                  </div>
+                </div>
+                {tagHelp[selectedTag].shortForm && (
+                  <div style={{ marginBottom: "10px" }}>
+                    <strong>Short Form:</strong>
+                    <div style={{
+                      marginLeft: "10px",
+                      marginTop: "5px",
+                      padding: "8px",
+                      backgroundColor: "#e8f5e9",
+                      borderRadius: "3px",
+                      fontFamily: "monospace"
+                    }}>
+                      {tagHelp[selectedTag].shortForm}
+                    </div>
+                  </div>
+                )}
+                <div style={{ marginBottom: "10px" }}>
+                  <strong>Platform Support:</strong>
+                  <div style={{ marginLeft: "10px", marginTop: "5px" }}>
+                    {tagHelp[selectedTag].platforms}
+                  </div>
+                </div>
+                {tagHelp[selectedTag].note && (
+                  <div style={{
+                    marginTop: "15px",
+                    padding: "10px",
+                    backgroundColor: "#fff3e0",
+                    borderLeft: "3px solid #ff9800",
+                    borderRadius: "3px"
+                  }}>
+                    <strong>💡 Note:</strong> {tagHelp[selectedTag].note}
+                  </div>
+                )}
+              </Card>
+            )}
+
+            <Card
+              elevation={1}
+              style={{
+                marginTop: "20px",
+                padding: "15px",
+                backgroundColor: "#f5f8fa"
+              }}
+            >
+              <h4 style={{ marginTop: 0 }}>📝 Short-Form Syntax Guide</h4>
+              <p>Speech Markdown supports convenient short-form syntax:</p>
+              <ul style={{ lineHeight: "1.8" }}>
+                <li>
+                  <code style={{
+                    backgroundColor: "#e8f5e9",
+                    padding: "2px 6px",
+                    borderRadius: "3px"
+                  }}>(text)/'IPA'/</code> - IPA phoneme
+                </li>
+                <li>
+                  <code style={{
+                    backgroundColor: "#e8f5e9",
+                    padding: "2px 6px",
+                    borderRadius: "3px"
+                  }}>(text)&#123;alias&#125;</code> - Substitution
+                </li>
+                <li>
+                  <code style={{
+                    backgroundColor: "#e8f5e9",
+                    padding: "2px 6px",
+                    borderRadius: "3px"
+                  }}>/IPA/</code> - Standalone IPA
+                </li>
+                <li>
+                  <code style={{
+                    backgroundColor: "#e8f5e9",
+                    padding: "2px 6px",
+                    borderRadius: "3px"
+                  }}>**text**</code> - Strong emphasis
+                </li>
+                <li>
+                  <code style={{
+                    backgroundColor: "#e8f5e9",
+                    padding: "2px 6px",
+                    borderRadius: "3px"
+                  }}>*text*</code> - Moderate emphasis
+                </li>
+                <li>
+                  <code style={{
+                    backgroundColor: "#e8f5e9",
+                    padding: "2px 6px",
+                    borderRadius: "3px"
+                  }}>[break:'1s']</code> - Break/pause
+                </li>
+              </ul>
+              <div style={{
+                marginTop: "15px",
+                padding: "10px",
+                backgroundColor: "#e3f2fd",
+                borderRadius: "3px"
+              }}>
+                <strong>💡 Tip:</strong> Use "Raw Markdown Mode" toggle to type short-form
+                syntax directly!
+              </div>
             </Card>
-          )}
-
-          <Card style={{ marginTop: "20px", backgroundColor: "#f5f5f5" }}>
-            <h4>Short-Form Syntax</h4>
-            <p>Speech Markdown supports convenient short-form syntax:</p>
-            <ul>
-              <li>
-                <code>(text)/'IPA'/</code> - IPA phoneme
-              </li>
-              <li>
-                <code>(text)&#123;alias&#125;</code> - Substitution
-              </li>
-              <li>
-                <code>/IPA/</code> - Standalone IPA
-              </li>
-              <li>
-                <code>**text**</code> - Strong emphasis
-              </li>
-              <li>
-                <code>*text*</code> - Moderate emphasis
-              </li>
-              <li>
-                <code>[break:'1s']</code> - Break/pause
-              </li>
-            </ul>
-            <p>
-              <strong>Tip:</strong> Use "Raw Markdown Mode" to type short-form
-              syntax directly!
-            </p>
-          </Card>
+          </div>
         </div>
       </Drawer>
     </>
