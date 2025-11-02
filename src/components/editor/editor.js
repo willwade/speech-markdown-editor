@@ -41,7 +41,7 @@ import { Recent } from "../../libs/storage";
 
 import { serializeToSMD } from "../../libs/serialize";
 
-const renderElement = (props) => {
+const createRenderElement = (platform) => (props) => {
   switch (props.element.type) {
     case "audio":
       return <AudioElement {...props} />;
@@ -94,9 +94,9 @@ const renderElement = (props) => {
     case "whisper":
       return <WhisperElement {...props} />;
     case "voice":
-      return <VoiceElement {...props} />;
+      return <VoiceElement {...props} platform={platform} />;
     case "voicesection":
-      return <VoiceSectionElement {...props} />;
+      return <VoiceSectionElement {...props} platform={platform} />;
     default:
       return <p {...props.attributes}>{props.children}</p>;
   }
@@ -124,10 +124,14 @@ const withEmbeds = (editor) => {
 };
 
 export function EditorComponent(props, ref) {
-  const { onChange } = props;
+  const { onChange, platform = "amazon-alexa" } = props;
   const [value, setValue] = useState(initialValue);
 
   const editor = useMemo(() => withEmbeds(withReact(createEditor())), []);
+  const renderElement = useMemo(
+    () => createRenderElement(platform),
+    [platform]
+  );
 
   useImperativeHandle(ref, () => {
     return {

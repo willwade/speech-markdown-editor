@@ -31,6 +31,7 @@ export const ModifierElement = ({
     if (selected && inputRef && inputRef.current) {
       inputRef.current.focus(editor.lastKeyDown !== "ArrowRight");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected]);
 
   useEffect(() => {

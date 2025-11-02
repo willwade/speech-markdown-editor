@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Editor } from "./components/editor/editor";
-import { Tabs, Tab, Tag, Switch } from "@blueprintjs/core";
+import { Tabs, Tab, Tag, Switch, Button } from "@blueprintjs/core";
 import { SpeechMarkdown } from "speechmarkdown-js";
 
 import { MenuButton } from "./components/menu";
@@ -25,6 +25,20 @@ const App = () => {
   const [plainText, setPlaintext] = useState("");
   const [rawMode, setRawMode] = useState(false);
   const [rawMarkdown, setRawMarkdown] = useState("");
+  const [selectedPlatform, setSelectedPlatform] = useState("amazon-alexa");
+
+  // Helper function to copy text to clipboard
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text).then(
+      () => {
+        // Success - could add a toast notification here if desired
+        console.log("Copied to clipboard");
+      },
+      (err) => {
+        console.error("Failed to copy: ", err);
+      }
+    );
+  };
   return (
     <div className="root">
       <div id="logo">
@@ -36,6 +50,7 @@ const App = () => {
       <div className="editor-box">
         <div className="toolbar">
           <MenuButton
+            platform={selectedPlatform}
             onSelect={(node) => {
               editorRef.current.insert(node);
               setRecentItems(Recent.get());
@@ -57,6 +72,12 @@ const App = () => {
               // Note: When switching back to visual mode, the editor will remount
               // and use the rawMarkdown state
             }}
+          />
+          <Button
+            icon="duplicate"
+            text="Copy Markdown"
+            small={true}
+            onClick={() => copyToClipboard(rawMarkdown)}
           />
           <HelpButton />
         </div>
@@ -100,6 +121,7 @@ const App = () => {
           ) : (
             <Editor
               ref={editorRef}
+              platform={selectedPlatform}
               onChange={(smd) => {
                 setRawMarkdown(smd);
                 setAlexa(speech.toSSML(smd, { platform: "amazon-alexa" }));
@@ -139,46 +161,145 @@ const App = () => {
         )}
       </div>
       <div className="preview-box">
-        <Tabs>
+        <Tabs
+          selectedTabId={selectedPlatform}
+          onChange={(newTabId) => setSelectedPlatform(newTabId)}
+        >
           <Tab
-            id="alexa"
+            id="amazon-alexa"
             title="Alexa"
-            panel={<div style={{ minHeight: "100px" }}>{alexa}</div>}
+            panel={
+              <div>
+                <div style={{ marginBottom: "10px" }}>
+                  <Button
+                    icon="duplicate"
+                    text="Copy SSML"
+                    small={true}
+                    onClick={() => copyToClipboard(alexa)}
+                  />
+                </div>
+                <div style={{ minHeight: "100px" }}>{alexa}</div>
+              </div>
+            }
           />
           <Tab
-            id="google"
+            id="google-assistant"
             title="Google Assistant"
-            panel={<div style={{ minHeight: "100px" }}>{google}</div>}
+            panel={
+              <div>
+                <div style={{ marginBottom: "10px" }}>
+                  <Button
+                    icon="duplicate"
+                    text="Copy SSML"
+                    small={true}
+                    onClick={() => copyToClipboard(google)}
+                  />
+                </div>
+                <div style={{ minHeight: "100px" }}>{google}</div>
+              </div>
+            }
           />
           <Tab
-            id="azure"
+            id="microsoft-azure"
             title="Azure"
-            panel={<div style={{ minHeight: "100px" }}>{azure}</div>}
+            panel={
+              <div>
+                <div style={{ marginBottom: "10px" }}>
+                  <Button
+                    icon="duplicate"
+                    text="Copy SSML"
+                    small={true}
+                    onClick={() => copyToClipboard(azure)}
+                  />
+                </div>
+                <div style={{ minHeight: "100px" }}>{azure}</div>
+              </div>
+            }
           />
           <Tab
             id="sapi"
             title="SAPI"
-            panel={<div style={{ minHeight: "100px" }}>{sapi}</div>}
+            panel={
+              <div>
+                <div style={{ marginBottom: "10px" }}>
+                  <Button
+                    icon="duplicate"
+                    text="Copy SSML"
+                    small={true}
+                    onClick={() => copyToClipboard(sapi)}
+                  />
+                </div>
+                <div style={{ minHeight: "100px" }}>{sapi}</div>
+              </div>
+            }
           />
           <Tab
-            id="polly"
+            id="amazon-polly"
             title="Polly"
-            panel={<div style={{ minHeight: "100px" }}>{polly}</div>}
+            panel={
+              <div>
+                <div style={{ marginBottom: "10px" }}>
+                  <Button
+                    icon="duplicate"
+                    text="Copy SSML"
+                    small={true}
+                    onClick={() => copyToClipboard(polly)}
+                  />
+                </div>
+                <div style={{ minHeight: "100px" }}>{polly}</div>
+              </div>
+            }
           />
           <Tab
-            id="polly-neural"
+            id="amazon-polly-neural"
             title="Polly Neural"
-            panel={<div style={{ minHeight: "100px" }}>{pollyNeural}</div>}
+            panel={
+              <div>
+                <div style={{ marginBottom: "10px" }}>
+                  <Button
+                    icon="duplicate"
+                    text="Copy SSML"
+                    small={true}
+                    onClick={() => copyToClipboard(pollyNeural)}
+                  />
+                </div>
+                <div style={{ minHeight: "100px" }}>{pollyNeural}</div>
+              </div>
+            }
           />
           <Tab
             id="w3c"
             title="W3C"
-            panel={<div style={{ minHeight: "100px" }}>{w3c}</div>}
+            panel={
+              <div>
+                <div style={{ marginBottom: "10px" }}>
+                  <Button
+                    icon="duplicate"
+                    text="Copy SSML"
+                    small={true}
+                    onClick={() => copyToClipboard(w3c)}
+                  />
+                </div>
+                <div style={{ minHeight: "100px" }}>{w3c}</div>
+              </div>
+            }
           />
           <Tab
             id="elevenlabs"
             title="ElevenLabs"
-            panel={<div style={{ minHeight: "100px" }}>{elevenlabs}</div>}
+            panel={
+              <div>
+                <div style={{ marginBottom: "10px" }}>
+                  <Button
+                    icon="duplicate"
+                    text="Copy SSML"
+                    small={true}
+                    onClick={() => copyToClipboard(elevenlabs)}
+                  />
+                </div>
+                <div style={{ minHeight: "100px" }}>{elevenlabs}</div>
+              </div>
+            }
           />
           {/* <Tab
             id="bixby"
@@ -188,7 +309,19 @@ const App = () => {
           <Tab
             id="plaintext"
             title="Plain Text"
-            panel={<div style={{ minHeight: "100px" }}>{plainText}</div>}
+            panel={
+              <div>
+                <div style={{ marginBottom: "10px" }}>
+                  <Button
+                    icon="duplicate"
+                    text="Copy Text"
+                    small={true}
+                    onClick={() => copyToClipboard(plainText)}
+                  />
+                </div>
+                <div style={{ minHeight: "100px" }}>{plainText}</div>
+              </div>
+            }
           />
         </Tabs>
       </div>

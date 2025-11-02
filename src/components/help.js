@@ -357,72 +357,84 @@ export const HelpButton = () => {
                     </div>
                   )}
                 </Card>
-                )}
-                <Card
-                  elevation={1}
-                  style={{
-                    marginTop: "20px",
-                    padding: isMobile ? "10px" : "15px",
-                    backgroundColor: "#f5f8fa",
-                  }}
-                >
-                  <h4
+
+                {/* Show Short-Form Syntax Guide only for tags that support it */}
+                {(selectedTag === "ipa" ||
+                  selectedTag === "sub" ||
+                  selectedTag === "emphasis" ||
+                  selectedTag === "break") && (
+                  <Card
+                    elevation={1}
                     style={{
-                      marginTop: 0,
-                      fontSize: isMobile ? "16px" : "inherit",
+                      marginTop: "20px",
+                      padding: isMobile ? "10px" : "15px",
+                      backgroundColor: "#f5f8fa",
                     }}
                   >
-                    <span role="img" aria-label="memo">
-                      📝
-                    </span>{" "}
-                    Short-Form Syntax Guide
-                  </h4>
-                  <p>Speech Markdown supports convenient short-form syntax:</p>
-                  <ul
-                    style={{
-                      lineHeight: "1.8",
-                      paddingLeft: isMobile ? "20px" : "inherit",
-                    }}
-                  >
-                    <li>
-                      <code style={codeStyle}>(text)/'IPA'/</code> - IPA phoneme
-                    </li>
-                    <li>
-                      <code style={codeStyle}>(text)&#123;alias&#125;</code> -
-                      Substitution
-                    </li>
-                    <li>
-                      <code style={codeStyle}>/IPA/</code> - Standalone IPA
-                    </li>
-                    <li>
-                      <code style={codeStyle}>**text**</code> - Strong emphasis
-                    </li>
-                    <li>
-                      <code style={codeStyle}>*text*</code> - Moderate emphasis
-                    </li>
-                    <li>
-                      <code style={codeStyle}>[break:'1s']</code> - Break/pause
-                    </li>
-                  </ul>
-                  <div
-                    style={{
-                      marginTop: "15px",
-                      padding: isMobile ? "8px" : "10px",
-                      backgroundColor: "#e3f2fd",
-                      borderRadius: "3px",
-                      fontSize: isMobile ? "13px" : "inherit",
-                    }}
-                  >
-                    <strong>
-                      <span role="img" aria-label="lightbulb">
-                        💡
+                    <h4
+                      style={{
+                        marginTop: 0,
+                        fontSize: isMobile ? "16px" : "inherit",
+                      }}
+                    >
+                      <span role="img" aria-label="memo">
+                        📝
                       </span>{" "}
-                      Tip:
-                    </strong>{" "}
-                    Use "Raw Markdown Mode" toggle to type short-form syntax
-                    directly!
-                  </div>
-                </Card>
+                      Short-Form Syntax Guide
+                    </h4>
+                    <p>
+                      Speech Markdown supports convenient short-form syntax:
+                    </p>
+                    <ul
+                      style={{
+                        lineHeight: "1.8",
+                        paddingLeft: isMobile ? "20px" : "inherit",
+                      }}
+                    >
+                      <li>
+                        <code style={codeStyle}>(text)/'IPA'/</code> - IPA
+                        phoneme
+                      </li>
+                      <li>
+                        <code style={codeStyle}>(text)&#123;alias&#125;</code> -
+                        Substitution
+                      </li>
+                      <li>
+                        <code style={codeStyle}>/IPA/</code> - Standalone IPA
+                      </li>
+                      <li>
+                        <code style={codeStyle}>**text**</code> - Strong
+                        emphasis
+                      </li>
+                      <li>
+                        <code style={codeStyle}>*text*</code> - Moderate
+                        emphasis
+                      </li>
+                      <li>
+                        <code style={codeStyle}>[break:'1s']</code> -
+                        Break/pause
+                      </li>
+                    </ul>
+                    <div
+                      style={{
+                        marginTop: "15px",
+                        padding: isMobile ? "8px" : "10px",
+                        backgroundColor: "#e3f2fd",
+                        borderRadius: "3px",
+                        fontSize: isMobile ? "13px" : "inherit",
+                      }}
+                    >
+                      <strong>
+                        <span role="img" aria-label="lightbulb">
+                          💡
+                        </span>{" "}
+                        Tip:
+                      </strong>{" "}
+                      Use "Raw Markdown Mode" toggle to type short-form syntax
+                      directly!
+                    </div>
+                  </Card>
+                )}
               </div>
             )}
           </div>

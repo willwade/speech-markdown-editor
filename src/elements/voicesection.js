@@ -2,36 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Transforms } from "slate";
 import { useSlate, ReactEditor } from "slate-react";
 import { Menu, MenuItem, Popover, Button } from "@blueprintjs/core";
-
-const voices = [
-  "Ivy",
-  "Joanna",
-  "Joey",
-  "Justin",
-  "Kendra",
-  "Kimberly",
-  "Matthew",
-  "Salli",
-  "Nicole",
-  "Russell",
-  "Amy",
-  "Brian",
-  "Emma",
-  "Aditi",
-  "Raveena",
-  "Hans",
-  "Marlene",
-  "Vicki",
-  "Conchita",
-  "Enrique",
-  "Carla",
-  "Giorgio",
-  "Mizuki",
-  "Takumi",
-  "Celine",
-  "Lea",
-  "Mathieu",
-];
+import { getVoicesForPlatform } from "../data/voices";
 
 const languages = [
   "en-US",
@@ -48,10 +19,17 @@ const languages = [
 ];
 
 export const VoiceSectionElement = (props) => {
-  const { attributes, children, element } = props;
+  const { attributes, children, element, platform = "amazon-alexa" } = props;
   const editor = useSlate();
-  const [voice, setVoice] = useState(element.voice || "Brian");
+  const [voice, setVoice] = useState(element.voice || "brian");
   const [lang, setLang] = useState(element.lang || "en-US");
+
+  // Get platform-specific voices
+  const platformVoices = getVoicesForPlatform(platform);
+
+  // Find the voice object for the current voice ID
+  const currentVoice = platformVoices.find((v) => v.id === voice);
+  const displayVoiceName = currentVoice ? currentVoice.name : voice;
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -74,14 +52,18 @@ export const VoiceSectionElement = (props) => {
           content={
             <div style={{ maxHeight: "300px", overflowY: "auto" }}>
               <Menu>
-                {voices.map((v) => (
+                {platformVoices.map((v) => (
                   <MenuItem
-                    key={v}
-                    text={v}
+                    key={v.id}
+                    text={v.name}
                     onClick={() => {
-                      setVoice(v);
+                      setVoice(v.id);
                       const path = ReactEditor.findPath(editor, element);
-                      Transforms.setNodes(editor, { voice: v }, { at: path });
+                      Transforms.setNodes(
+                        editor,
+                        { voice: v.id },
+                        { at: path }
+                      );
                     }}
                   />
                 ))}
@@ -93,7 +75,7 @@ export const VoiceSectionElement = (props) => {
             className="section-input"
             style={{ cursor: "pointer", textDecoration: "underline" }}
           >
-            {voice}
+            {displayVoiceName}
           </span>
         </Popover>
         {lang && (

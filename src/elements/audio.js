@@ -14,6 +14,7 @@ export const AudioElement = ({ attributes, children, element }) => {
     if (selected && inputRef && inputRef.current) {
       inputRef.current.focus(editor.lastKeyDown !== "ArrowRight");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected]);
 
   return (
