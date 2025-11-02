@@ -378,6 +378,12 @@ export const MenuButton = (props) => {
                 />
               </div>
             </MenuItem>
+            <MenuItem
+              text="voice (section)"
+              onClick={(e) =>
+                onSelect({ type: "voicesection", voice: "Brian", lang: "en-GB" })
+              }
+            />
             <MenuItem text="volume">
               <MenuItem
                 text="silent"

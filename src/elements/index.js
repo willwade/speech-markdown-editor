@@ -24,3 +24,4 @@ export { TimeElement } from "./time";
 export { UnitElement } from "./unit";
 export { WhisperElement } from "./whisper";
 export { VoiceElement } from "./voice";
+export { VoiceSectionElement } from "./voicesection";

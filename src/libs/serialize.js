@@ -64,6 +64,7 @@ export function serializeToSMD(nodes) {
       case "excited":
       case "lang":
       case "newscaster":
+      case "voicesection":
         smd += `#[${sectionToSMD(node)}]`;
         break;
       default:

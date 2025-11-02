@@ -36,6 +36,7 @@ import {
   TimeElement,
   UnitElement,
   VoiceElement,
+  VoiceSectionElement,
   WhisperElement,
 } from "../../elements";
 
@@ -97,6 +98,8 @@ const renderElement = (props) => {
       return <WhisperElement {...props} />;
     case "voice":
       return <VoiceElement {...props} />;
+    case "voicesection":
+      return <VoiceSectionElement {...props} />;
     default:
       return <p {...props.attributes}>{props.children}</p>;
   }
