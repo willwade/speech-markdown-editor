@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Button, Drawer, Menu, MenuItem, Card, Classes } from "@blueprintjs/core";
+import {
+  Button,
+  Drawer,
+  Menu,
+  MenuItem,
+  Card,
+  Classes,
+} from "@blueprintjs/core";
 
 const tagHelp = {
   address: {
@@ -196,17 +203,12 @@ export const HelpButton = () => {
     backgroundColor: "#e8f5e9",
     padding: "2px 6px",
     borderRadius: "3px",
-    fontSize: isMobile ? "12px" : "inherit"
+    fontSize: isMobile ? "12px" : "inherit",
   };
 
   return (
     <>
-      <Button
-        icon="help"
-        text="Help"
-        onClick={() => setIsOpen(true)}
-        minimal
-      />
+      <Button icon="help" text="Help" onClick={() => setIsOpen(true)} minimal />
       <Drawer
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
@@ -214,127 +216,218 @@ export const HelpButton = () => {
         size={isMobile ? "90%" : "500px"}
         position="right"
       >
-        <div className={Classes.DRAWER_BODY}>
-          <div className={Classes.DIALOG_BODY} style={{ fontSize: isMobile ? "14px" : "inherit" }}>
-            <h3 style={{ fontSize: isMobile ? "18px" : "inherit" }}>Select a Tag</h3>
-            <Menu style={{ maxHeight: isMobile ? "200px" : "300px", overflowY: "auto" }}>
-              {Object.keys(tagHelp)
-                .sort()
-                .map((key) => (
-                  <MenuItem
-                    key={key}
-                    text={tagHelp[key].name}
-                    onClick={() => setSelectedTag(key)}
-                    active={selectedTag === key}
-                  />
-                ))}
-            </Menu>
-
-            {selectedTag && (
-              <Card
-                elevation={2}
-                style={{
-                  marginTop: "20px",
-                  padding: isMobile ? "10px" : "15px",
-                  backgroundColor: "#ffffff"
-                }}
-              >
-                <h3 style={{ marginTop: 0, fontSize: isMobile ? "16px" : "inherit" }}>
-                  {tagHelp[selectedTag].name}
-                </h3>
-                <div style={{ marginBottom: "10px" }}>
-                  <strong>Description:</strong>
-                  <div style={{ marginLeft: "10px", marginTop: "5px" }}>
-                    {tagHelp[selectedTag].description}
-                  </div>
-                </div>
-                <div style={{ marginBottom: "10px" }}>
-                  <strong>Example:</strong>
-                  <div style={{
-                    marginLeft: isMobile ? "5px" : "10px",
-                    marginTop: "5px",
-                    padding: isMobile ? "6px" : "8px",
-                    backgroundColor: "#f5f5f5",
-                    borderRadius: "3px",
-                    fontFamily: "monospace",
-                    fontSize: isMobile ? "12px" : "inherit",
-                    wordBreak: "break-word"
-                  }}>
-                    {tagHelp[selectedTag].example}
-                  </div>
-                </div>
-                {tagHelp[selectedTag].shortForm && (
-                  <div style={{ marginBottom: "10px" }}>
-                    <strong>Short Form:</strong>
-                    <div style={{
-                      marginLeft: isMobile ? "5px" : "10px",
-                      marginTop: "5px",
-                      padding: isMobile ? "6px" : "8px",
-                      backgroundColor: "#e8f5e9",
-                      borderRadius: "3px",
-                      fontFamily: "monospace",
-                      fontSize: isMobile ? "12px" : "inherit",
-                      wordBreak: "break-word"
-                    }}>
-                      {tagHelp[selectedTag].shortForm}
-                    </div>
-                  </div>
-                )}
-                <div style={{ marginBottom: "10px" }}>
-                  <strong>Platform Support:</strong>
-                  <div style={{ marginLeft: "10px", marginTop: "5px" }}>
-                    {tagHelp[selectedTag].platforms}
-                  </div>
-                </div>
-                {tagHelp[selectedTag].note && (
-                  <div style={{
-                    marginTop: "15px",
-                    padding: "10px",
-                    backgroundColor: "#fff3e0",
-                    borderLeft: "3px solid #ff9800",
-                    borderRadius: "3px"
-                  }}>
-                    <strong>💡 Note:</strong> {tagHelp[selectedTag].note}
-                  </div>
-                )}
-              </Card>
-            )}
-
-            <Card
-              elevation={1}
+        <div
+          className={Classes.DRAWER_BODY}
+          style={{ display: "flex", flexDirection: "column", height: "100%" }}
+        >
+          <div
+            className={Classes.DIALOG_BODY}
+            style={{
+              fontSize: isMobile ? "14px" : "inherit",
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              overflow: "hidden",
+            }}
+          >
+            <h3
               style={{
-                marginTop: "20px",
-                padding: isMobile ? "10px" : "15px",
-                backgroundColor: "#f5f8fa"
+                fontSize: isMobile ? "18px" : "inherit",
+                marginBottom: "10px",
               }}
             >
-              <h4 style={{ marginTop: 0, fontSize: isMobile ? "16px" : "inherit" }}>
-                📝 Short-Form Syntax Guide
-              </h4>
-              <p>Speech Markdown supports convenient short-form syntax:</p>
-              <ul style={{ lineHeight: "1.8", paddingLeft: isMobile ? "20px" : "inherit" }}>
-                <li><code style={codeStyle}>(text)/'IPA'/</code> - IPA phoneme</li>
-                <li><code style={codeStyle}>(text)&#123;alias&#125;</code> - Substitution</li>
-                <li><code style={codeStyle}>/IPA/</code> - Standalone IPA</li>
-                <li><code style={codeStyle}>**text**</code> - Strong emphasis</li>
-                <li><code style={codeStyle}>*text*</code> - Moderate emphasis</li>
-                <li><code style={codeStyle}>[break:'1s']</code> - Break/pause</li>
-              </ul>
-              <div style={{
-                marginTop: "15px",
-                padding: isMobile ? "8px" : "10px",
-                backgroundColor: "#e3f2fd",
+              Select a Tag
+            </h3>
+            <div
+              style={{
+                flex: selectedTag ? "0 0 auto" : "1 1 auto",
+                maxHeight: selectedTag
+                  ? isMobile
+                    ? "150px"
+                    : "200px"
+                  : "none",
+                overflowY: "auto",
+                marginBottom: "15px",
+                border: "1px solid #e1e8ed",
                 borderRadius: "3px",
-                fontSize: isMobile ? "13px" : "inherit"
-              }}>
-                <strong>💡 Tip:</strong> Use "Raw Markdown Mode" toggle to type short-form
-                syntax directly!
+              }}
+            >
+              <Menu>
+                {Object.keys(tagHelp)
+                  .sort()
+                  .map((key) => (
+                    <MenuItem
+                      key={key}
+                      text={tagHelp[key].name}
+                      onClick={() => setSelectedTag(key)}
+                      active={selectedTag === key}
+                    />
+                  ))}
+              </Menu>
+            </div>
+
+            {selectedTag && (
+              <div
+                style={{
+                  flex: "1 1 auto",
+                  overflowY: "auto",
+                  paddingRight: "5px",
+                }}
+              >
+                <Card
+                  elevation={2}
+                  style={{
+                    padding: isMobile ? "10px" : "15px",
+                    backgroundColor: "#ffffff",
+                  }}
+                >
+                  <h3
+                    style={{
+                      marginTop: 0,
+                      fontSize: isMobile ? "16px" : "inherit",
+                    }}
+                  >
+                    {tagHelp[selectedTag].name}
+                  </h3>
+                  <div style={{ marginBottom: "10px" }}>
+                    <strong>Description:</strong>
+                    <div style={{ marginLeft: "10px", marginTop: "5px" }}>
+                      {tagHelp[selectedTag].description}
+                    </div>
+                  </div>
+                  <div style={{ marginBottom: "10px" }}>
+                    <strong>Example:</strong>
+                    <div
+                      style={{
+                        marginLeft: isMobile ? "5px" : "10px",
+                        marginTop: "5px",
+                        padding: isMobile ? "6px" : "8px",
+                        backgroundColor: "#f5f5f5",
+                        borderRadius: "3px",
+                        fontFamily: "monospace",
+                        fontSize: isMobile ? "12px" : "inherit",
+                        wordBreak: "break-word",
+                      }}
+                    >
+                      {tagHelp[selectedTag].example}
+                    </div>
+                  </div>
+                  {tagHelp[selectedTag].shortForm && (
+                    <div style={{ marginBottom: "10px" }}>
+                      <strong>Short Form:</strong>
+                      <div
+                        style={{
+                          marginLeft: isMobile ? "5px" : "10px",
+                          marginTop: "5px",
+                          padding: isMobile ? "6px" : "8px",
+                          backgroundColor: "#e8f5e9",
+                          borderRadius: "3px",
+                          fontFamily: "monospace",
+                          fontSize: isMobile ? "12px" : "inherit",
+                          wordBreak: "break-word",
+                        }}
+                      >
+                        {tagHelp[selectedTag].shortForm}
+                      </div>
+                    </div>
+                  )}
+                  <div style={{ marginBottom: "10px" }}>
+                    <strong>Platform Support:</strong>
+                    <div style={{ marginLeft: "10px", marginTop: "5px" }}>
+                      {tagHelp[selectedTag].platforms}
+                    </div>
+                  </div>
+                  {tagHelp[selectedTag].note && (
+                    <div
+                      style={{
+                        marginTop: "15px",
+                        padding: "10px",
+                        backgroundColor: "#fff3e0",
+                        borderLeft: "3px solid #ff9800",
+                        borderRadius: "3px",
+                      }}
+                    >
+                      <strong>
+                        <span role="img" aria-label="lightbulb">
+                          💡
+                        </span>{" "}
+                        Note:
+                      </strong>{" "}
+                      {tagHelp[selectedTag].note}
+                    </div>
+                  )}
+                </Card>
+                )}
+                <Card
+                  elevation={1}
+                  style={{
+                    marginTop: "20px",
+                    padding: isMobile ? "10px" : "15px",
+                    backgroundColor: "#f5f8fa",
+                  }}
+                >
+                  <h4
+                    style={{
+                      marginTop: 0,
+                      fontSize: isMobile ? "16px" : "inherit",
+                    }}
+                  >
+                    <span role="img" aria-label="memo">
+                      📝
+                    </span>{" "}
+                    Short-Form Syntax Guide
+                  </h4>
+                  <p>Speech Markdown supports convenient short-form syntax:</p>
+                  <ul
+                    style={{
+                      lineHeight: "1.8",
+                      paddingLeft: isMobile ? "20px" : "inherit",
+                    }}
+                  >
+                    <li>
+                      <code style={codeStyle}>(text)/'IPA'/</code> - IPA phoneme
+                    </li>
+                    <li>
+                      <code style={codeStyle}>(text)&#123;alias&#125;</code> -
+                      Substitution
+                    </li>
+                    <li>
+                      <code style={codeStyle}>/IPA/</code> - Standalone IPA
+                    </li>
+                    <li>
+                      <code style={codeStyle}>**text**</code> - Strong emphasis
+                    </li>
+                    <li>
+                      <code style={codeStyle}>*text*</code> - Moderate emphasis
+                    </li>
+                    <li>
+                      <code style={codeStyle}>[break:'1s']</code> - Break/pause
+                    </li>
+                  </ul>
+                  <div
+                    style={{
+                      marginTop: "15px",
+                      padding: isMobile ? "8px" : "10px",
+                      backgroundColor: "#e3f2fd",
+                      borderRadius: "3px",
+                      fontSize: isMobile ? "13px" : "inherit",
+                    }}
+                  >
+                    <strong>
+                      <span role="img" aria-label="lightbulb">
+                        💡
+                      </span>{" "}
+                      Tip:
+                    </strong>{" "}
+                    Use "Raw Markdown Mode" toggle to type short-form syntax
+                    directly!
+                  </div>
+                </Card>
               </div>
-            </Card>
+            )}
           </div>
         </div>
       </Drawer>
     </>
   );
 };
-

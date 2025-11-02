@@ -16,7 +16,6 @@ const App = () => {
   const [recentItems, setRecentItems] = useState(Recent.get());
   const [alexa, setAlexa] = useState("");
   const [google, setGoogle] = useState("");
-  const [bixby, setBixby] = useState("");
   const [azure, setAzure] = useState("");
   const [sapi, setSapi] = useState("");
   const [polly, setPolly] = useState("");
@@ -70,9 +69,7 @@ const App = () => {
                 const smd = e.target.value;
                 setRawMarkdown(smd);
                 setAlexa(speech.toSSML(smd, { platform: "amazon-alexa" }));
-                setGoogle(
-                  speech.toSSML(smd, { platform: "google-assistant" })
-                );
+                setGoogle(speech.toSSML(smd, { platform: "google-assistant" }));
                 setAzure(speech.toSSML(smd, { platform: "microsoft-azure" }));
                 setSapi(speech.toSSML(smd, { platform: "microsoft-sapi" }));
                 setPolly(speech.toSSML(smd, { platform: "amazon-polly" }));
@@ -106,9 +103,7 @@ const App = () => {
               onChange={(smd) => {
                 setRawMarkdown(smd);
                 setAlexa(speech.toSSML(smd, { platform: "amazon-alexa" }));
-                setGoogle(
-                  speech.toSSML(smd, { platform: "google-assistant" })
-                );
+                setGoogle(speech.toSSML(smd, { platform: "google-assistant" }));
                 setAzure(speech.toSSML(smd, { platform: "microsoft-azure" }));
                 setSapi(speech.toSSML(smd, { platform: "microsoft-sapi" }));
                 setPolly(speech.toSSML(smd, { platform: "amazon-polly" }));

@@ -1,14 +1,11 @@
 import React, {
-  useEffect,
   useMemo,
   useState,
-  useCallback,
   useImperativeHandle,
   forwardRef,
-  useRef,
 } from "react";
-import { createEditor, Transforms, Text } from "slate";
-import { Slate, Editable, withReact, ReactEditor } from "slate-react";
+import { createEditor, Transforms } from "slate";
+import { Slate, Editable, withReact } from "slate-react";
 
 import {
   AddressElement,

@@ -47,6 +47,45 @@ body {
   padding: 12px;
   margin-top: 48px;
   background-color: white;
+  overflow-x: auto;
+}
+
+// Mobile responsiveness
+@media (max-width: 768px) {
+  .root {
+    padding: 0 8px;
+  }
+
+  #logo {
+    margin: 16px auto;
+    img {
+      max-width: 200px;
+    }
+  }
+
+  .toolbar {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .editable-container {
+    padding: 8px;
+  }
+
+  .preview-box {
+    padding: 8px;
+    margin-top: 24px;
+  }
+
+  // Make tabs scrollable on mobile
+  .bp3-tabs {
+    .bp3-tab-list {
+      overflow-x: auto;
+      overflow-y: hidden;
+      flex-wrap: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
 }
 
 p {

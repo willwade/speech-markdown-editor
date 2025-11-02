@@ -1,5 +1,5 @@
 import React from "react";
-import { Popover, Menu, MenuItem, Button, InputGroup } from "@blueprintjs/core";
+import { Popover, Menu, MenuItem, Button } from "@blueprintjs/core";
 
 export const MenuButton = (props) => {
   const { onSelect } = props;
@@ -381,7 +381,11 @@ export const MenuButton = (props) => {
             <MenuItem
               text="voice (section)"
               onClick={(e) =>
-                onSelect({ type: "voicesection", voice: "Brian", lang: "en-GB" })
+                onSelect({
+                  type: "voicesection",
+                  voice: "Brian",
+                  lang: "en-GB",
+                })
               }
             />
             <MenuItem text="volume">
