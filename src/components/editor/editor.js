@@ -26,6 +26,8 @@ import {
   FractionElement,
   InterjectionElement,
   IpaElement,
+  LangElement,
+  MarkElement,
   NewscasterElement,
   NumberElement,
   OrdinalElement,
@@ -73,6 +75,10 @@ const renderElement = (props) => {
       return <InterjectionElement {...props} />;
     case "ipa":
       return <IpaElement {...props} />;
+    case "lang":
+      return <LangElement {...props} />;
+    case "mark":
+      return <MarkElement {...props} />;
     case "newscaster":
       return <NewscasterElement {...props} />;
     case "number":

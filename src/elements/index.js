@@ -13,6 +13,8 @@ export { ExpletiveElement } from "./expletive";
 export { FractionElement } from "./fraction";
 export { InterjectionElement } from "./interjection";
 export { IpaElement } from "./ipa";
+export { LangElement } from "./lang";
+export { MarkElement } from "./mark";
 export { NewscasterElement } from "./newscaster";
 export { NumberElement } from "./number";
 export { OrdinalElement } from "./ordinal";

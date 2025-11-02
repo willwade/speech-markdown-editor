@@ -55,10 +55,14 @@ export function serializeToSMD(nodes) {
       case "break":
         smd += `[break:"${node.break}"] `;
         break;
+      case "mark":
+        smd += `[mark:"${node.value}"]`;
+        break;
       case "defaults":
       case "disappointed":
       case "dj":
       case "excited":
+      case "lang":
       case "newscaster":
         smd += `#[${sectionToSMD(node)}]`;
         break;

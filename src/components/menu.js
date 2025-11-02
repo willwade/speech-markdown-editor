@@ -180,9 +180,14 @@ export const MenuButton = (props) => {
             />
             <MenuItem text="ipa" onClick={(e) => onSelect({ type: "ipa" })} />
             <MenuItem
-              text="lang"
+              text="lang (modifier)"
               onClick={(e) => onSelect({ type: "voice", lang: "en-US" })}
             />
+            <MenuItem
+              text="lang (section)"
+              onClick={(e) => onSelect({ type: "lang", lang: "en-US" })}
+            />
+            <MenuItem text="mark" onClick={(e) => onSelect({ type: "mark" })} />
             <MenuItem
               text="newscaster"
               onClick={(e) => onSelect({ type: "newscaster" })}

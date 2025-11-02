@@ -16,6 +16,12 @@ const App = () => {
   const [alexa, setAlexa] = useState("");
   const [google, setGoogle] = useState("");
   const [bixby, setBixby] = useState("");
+  const [azure, setAzure] = useState("");
+  const [sapi, setSapi] = useState("");
+  const [polly, setPolly] = useState("");
+  const [pollyNeural, setPollyNeural] = useState("");
+  const [w3c, setW3c] = useState("");
+  const [elevenlabs, setElevenlabs] = useState("");
   const [plainText, setPlaintext] = useState("");
   return (
     <div className="root">
@@ -40,6 +46,14 @@ const App = () => {
             onChange={(smd) => {
               setAlexa(speech.toSSML(smd, { platform: "amazon-alexa" }));
               setGoogle(speech.toSSML(smd, { platform: "google-assistant" }));
+              setAzure(speech.toSSML(smd, { platform: "microsoft-azure" }));
+              setSapi(speech.toSSML(smd, { platform: "microsoft-sapi" }));
+              setPolly(speech.toSSML(smd, { platform: "amazon-polly" }));
+              setPollyNeural(
+                speech.toSSML(smd, { platform: "amazon-polly-neural" })
+              );
+              setW3c(speech.toSSML(smd, { platform: "w3c" }));
+              setElevenlabs(speech.toSSML(smd, { platform: "elevenlabs" }));
               // setBixby(speech.toSSML(smd, { platform: "samsung-bixby" }));
               setPlaintext(speech.toText(smd));
             }}
@@ -75,8 +89,38 @@ const App = () => {
           />
           <Tab
             id="google"
-            title="Google"
+            title="Google Assistant"
             panel={<div style={{ minHeight: "100px" }}>{google}</div>}
+          />
+          <Tab
+            id="azure"
+            title="Azure"
+            panel={<div style={{ minHeight: "100px" }}>{azure}</div>}
+          />
+          <Tab
+            id="sapi"
+            title="SAPI"
+            panel={<div style={{ minHeight: "100px" }}>{sapi}</div>}
+          />
+          <Tab
+            id="polly"
+            title="Polly"
+            panel={<div style={{ minHeight: "100px" }}>{polly}</div>}
+          />
+          <Tab
+            id="polly-neural"
+            title="Polly Neural"
+            panel={<div style={{ minHeight: "100px" }}>{pollyNeural}</div>}
+          />
+          <Tab
+            id="w3c"
+            title="W3C"
+            panel={<div style={{ minHeight: "100px" }}>{w3c}</div>}
+          />
+          <Tab
+            id="elevenlabs"
+            title="ElevenLabs"
+            panel={<div style={{ minHeight: "100px" }}>{elevenlabs}</div>}
           />
           {/* <Tab
             id="bixby"
