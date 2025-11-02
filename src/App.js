@@ -58,7 +58,6 @@ const App = () => {
               // Note: When switching back to visual mode, the editor will remount
               // and use the rawMarkdown state
             }}
-            style={{ marginLeft: "10px" }}
           />
           <HelpButton />
         </div>

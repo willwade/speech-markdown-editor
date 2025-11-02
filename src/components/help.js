@@ -190,6 +190,14 @@ const tagHelp = {
 export const HelpButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedTag, setSelectedTag] = useState(null);
+  const isMobile = window.innerWidth <= 768;
+
+  const codeStyle = {
+    backgroundColor: "#e8f5e9",
+    padding: "2px 6px",
+    borderRadius: "3px",
+    fontSize: isMobile ? "12px" : "inherit"
+  };
 
   return (
     <>
@@ -203,13 +211,13 @@ export const HelpButton = () => {
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         title="Speech Markdown Help"
-        size="500px"
+        size={isMobile ? "90%" : "500px"}
         position="right"
       >
         <div className={Classes.DRAWER_BODY}>
-          <div className={Classes.DIALOG_BODY}>
-            <h3>Select a Tag</h3>
-            <Menu style={{ maxHeight: "300px", overflowY: "auto" }}>
+          <div className={Classes.DIALOG_BODY} style={{ fontSize: isMobile ? "14px" : "inherit" }}>
+            <h3 style={{ fontSize: isMobile ? "18px" : "inherit" }}>Select a Tag</h3>
+            <Menu style={{ maxHeight: isMobile ? "200px" : "300px", overflowY: "auto" }}>
               {Object.keys(tagHelp)
                 .sort()
                 .map((key) => (
@@ -227,11 +235,13 @@ export const HelpButton = () => {
                 elevation={2}
                 style={{
                   marginTop: "20px",
-                  padding: "15px",
+                  padding: isMobile ? "10px" : "15px",
                   backgroundColor: "#ffffff"
                 }}
               >
-                <h3 style={{ marginTop: 0 }}>{tagHelp[selectedTag].name}</h3>
+                <h3 style={{ marginTop: 0, fontSize: isMobile ? "16px" : "inherit" }}>
+                  {tagHelp[selectedTag].name}
+                </h3>
                 <div style={{ marginBottom: "10px" }}>
                   <strong>Description:</strong>
                   <div style={{ marginLeft: "10px", marginTop: "5px" }}>
@@ -241,12 +251,14 @@ export const HelpButton = () => {
                 <div style={{ marginBottom: "10px" }}>
                   <strong>Example:</strong>
                   <div style={{
-                    marginLeft: "10px",
+                    marginLeft: isMobile ? "5px" : "10px",
                     marginTop: "5px",
-                    padding: "8px",
+                    padding: isMobile ? "6px" : "8px",
                     backgroundColor: "#f5f5f5",
                     borderRadius: "3px",
-                    fontFamily: "monospace"
+                    fontFamily: "monospace",
+                    fontSize: isMobile ? "12px" : "inherit",
+                    wordBreak: "break-word"
                   }}>
                     {tagHelp[selectedTag].example}
                   </div>
@@ -255,12 +267,14 @@ export const HelpButton = () => {
                   <div style={{ marginBottom: "10px" }}>
                     <strong>Short Form:</strong>
                     <div style={{
-                      marginLeft: "10px",
+                      marginLeft: isMobile ? "5px" : "10px",
                       marginTop: "5px",
-                      padding: "8px",
+                      padding: isMobile ? "6px" : "8px",
                       backgroundColor: "#e8f5e9",
                       borderRadius: "3px",
-                      fontFamily: "monospace"
+                      fontFamily: "monospace",
+                      fontSize: isMobile ? "12px" : "inherit",
+                      wordBreak: "break-word"
                     }}>
                       {tagHelp[selectedTag].shortForm}
                     </div>
@@ -290,61 +304,28 @@ export const HelpButton = () => {
               elevation={1}
               style={{
                 marginTop: "20px",
-                padding: "15px",
+                padding: isMobile ? "10px" : "15px",
                 backgroundColor: "#f5f8fa"
               }}
             >
-              <h4 style={{ marginTop: 0 }}>📝 Short-Form Syntax Guide</h4>
+              <h4 style={{ marginTop: 0, fontSize: isMobile ? "16px" : "inherit" }}>
+                📝 Short-Form Syntax Guide
+              </h4>
               <p>Speech Markdown supports convenient short-form syntax:</p>
-              <ul style={{ lineHeight: "1.8" }}>
-                <li>
-                  <code style={{
-                    backgroundColor: "#e8f5e9",
-                    padding: "2px 6px",
-                    borderRadius: "3px"
-                  }}>(text)/'IPA'/</code> - IPA phoneme
-                </li>
-                <li>
-                  <code style={{
-                    backgroundColor: "#e8f5e9",
-                    padding: "2px 6px",
-                    borderRadius: "3px"
-                  }}>(text)&#123;alias&#125;</code> - Substitution
-                </li>
-                <li>
-                  <code style={{
-                    backgroundColor: "#e8f5e9",
-                    padding: "2px 6px",
-                    borderRadius: "3px"
-                  }}>/IPA/</code> - Standalone IPA
-                </li>
-                <li>
-                  <code style={{
-                    backgroundColor: "#e8f5e9",
-                    padding: "2px 6px",
-                    borderRadius: "3px"
-                  }}>**text**</code> - Strong emphasis
-                </li>
-                <li>
-                  <code style={{
-                    backgroundColor: "#e8f5e9",
-                    padding: "2px 6px",
-                    borderRadius: "3px"
-                  }}>*text*</code> - Moderate emphasis
-                </li>
-                <li>
-                  <code style={{
-                    backgroundColor: "#e8f5e9",
-                    padding: "2px 6px",
-                    borderRadius: "3px"
-                  }}>[break:'1s']</code> - Break/pause
-                </li>
+              <ul style={{ lineHeight: "1.8", paddingLeft: isMobile ? "20px" : "inherit" }}>
+                <li><code style={codeStyle}>(text)/'IPA'/</code> - IPA phoneme</li>
+                <li><code style={codeStyle}>(text)&#123;alias&#125;</code> - Substitution</li>
+                <li><code style={codeStyle}>/IPA/</code> - Standalone IPA</li>
+                <li><code style={codeStyle}>**text**</code> - Strong emphasis</li>
+                <li><code style={codeStyle}>*text*</code> - Moderate emphasis</li>
+                <li><code style={codeStyle}>[break:'1s']</code> - Break/pause</li>
               </ul>
               <div style={{
                 marginTop: "15px",
-                padding: "10px",
+                padding: isMobile ? "8px" : "10px",
                 backgroundColor: "#e3f2fd",
-                borderRadius: "3px"
+                borderRadius: "3px",
+                fontSize: isMobile ? "13px" : "inherit"
               }}>
                 <strong>💡 Tip:</strong> Use "Raw Markdown Mode" toggle to type short-form
                 syntax directly!
