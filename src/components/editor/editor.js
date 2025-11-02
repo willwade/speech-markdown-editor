@@ -173,6 +173,14 @@ export function EditorComponent(props, ref) {
           },
         ]);
       },
+      getMarkdown: () => {
+        return serializeToSMD(value[0].children);
+      },
+      setMarkdown: (markdown) => {
+        // For now, just set to initial value
+        // TODO: Parse markdown back to Slate nodes
+        setValue(initialValue);
+      },
     };
   });
 

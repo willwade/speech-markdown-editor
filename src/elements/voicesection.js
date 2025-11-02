@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Transforms } from "slate";
 import { useSlate, ReactEditor } from "slate-react";
-import { InputGroup, Menu, MenuItem, Popover } from "@blueprintjs/core";
+import { Menu, MenuItem, Popover, Button } from "@blueprintjs/core";
 
 const voices = [
   "Ivy",
@@ -31,6 +31,20 @@ const voices = [
   "Celine",
   "Lea",
   "Mathieu",
+];
+
+const languages = [
+  "en-US",
+  "en-GB",
+  "en-AU",
+  "en-IN",
+  "de-DE",
+  "es-ES",
+  "fr-FR",
+  "it-IT",
+  "ja-JP",
+  "pt-BR",
+  "zh-CN",
 ];
 
 export const VoiceSectionElement = (props) => {
@@ -82,17 +96,42 @@ export const VoiceSectionElement = (props) => {
             {voice}
           </span>
         </Popover>
-        <span>; lang:</span>
-        <InputGroup
-          className="section-input"
-          value={lang}
-          onChange={(e) => {
-            setLang(e.target.value);
-            const path = ReactEditor.findPath(editor, element);
-            Transforms.setNodes(editor, { lang: e.target.value }, { at: path });
-          }}
-          placeholder="en-US"
-        />
+        {lang && (
+          <>
+            <span>; lang:</span>
+            <span
+              className="section-input"
+              style={{ cursor: "pointer", textDecoration: "underline" }}
+            >
+              {lang}
+            </span>
+          </>
+        )}
+        <Popover
+          content={
+            <Menu>
+              {languages.map((l) => (
+                <MenuItem
+                  key={l}
+                  text={l}
+                  onClick={() => {
+                    setLang(l);
+                    const path = ReactEditor.findPath(editor, element);
+                    Transforms.setNodes(editor, { lang: l }, { at: path });
+                  }}
+                />
+              ))}
+            </Menu>
+          }
+        >
+          <Button
+            icon="plus"
+            minimal
+            small
+            style={{ marginLeft: "5px" }}
+            title="Add language"
+          />
+        </Popover>
       </div>
       <div className="section-content">{children}</div>
     </div>

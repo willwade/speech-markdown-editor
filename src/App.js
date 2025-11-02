@@ -1,9 +1,10 @@
 import React, { useRef, useState } from "react";
 import { Editor } from "./components/editor/editor";
-import { Tabs, Tab, Tag } from "@blueprintjs/core";
+import { Tabs, Tab, Tag, Switch } from "@blueprintjs/core";
 import { SpeechMarkdown } from "speechmarkdown-js";
 
 import { MenuButton } from "./components/menu";
+import { HelpButton } from "./components/help";
 import { Recent } from "./libs/storage";
 
 import "./App.scss";
@@ -23,6 +24,8 @@ const App = () => {
   const [w3c, setW3c] = useState("");
   const [elevenlabs, setElevenlabs] = useState("");
   const [plainText, setPlaintext] = useState("");
+  const [rawMode, setRawMode] = useState(false);
+  const [rawMarkdown, setRawMarkdown] = useState("");
   return (
     <div className="root">
       <div id="logo">
@@ -39,25 +42,85 @@ const App = () => {
               setRecentItems(Recent.get());
             }}
           />
+          <Switch
+            checked={rawMode}
+            label="Raw Markdown Mode"
+            onChange={(e) => {
+              const newRawMode = e.target.checked;
+              setRawMode(newRawMode);
+              if (newRawMode) {
+                // Switching to raw mode - get current markdown from editor
+                const currentSmd = editorRef.current.getMarkdown();
+                setRawMarkdown(currentSmd);
+              } else {
+                // Switching back to visual mode - update editor with raw markdown
+                editorRef.current.setMarkdown(rawMarkdown);
+              }
+            }}
+            style={{ marginLeft: "10px" }}
+          />
+          <HelpButton />
         </div>
         <div className="editable-container">
-          <Editor
-            ref={editorRef}
-            onChange={(smd) => {
-              setAlexa(speech.toSSML(smd, { platform: "amazon-alexa" }));
-              setGoogle(speech.toSSML(smd, { platform: "google-assistant" }));
-              setAzure(speech.toSSML(smd, { platform: "microsoft-azure" }));
-              setSapi(speech.toSSML(smd, { platform: "microsoft-sapi" }));
-              setPolly(speech.toSSML(smd, { platform: "amazon-polly" }));
-              setPollyNeural(
-                speech.toSSML(smd, { platform: "amazon-polly-neural" })
-              );
-              setW3c(speech.toSSML(smd, { platform: "w3c" }));
-              setElevenlabs(speech.toSSML(smd, { platform: "elevenlabs" }));
-              // setBixby(speech.toSSML(smd, { platform: "samsung-bixby" }));
-              setPlaintext(speech.toText(smd));
-            }}
-          />
+          {rawMode ? (
+            <textarea
+              className="raw-markdown-editor"
+              value={rawMarkdown}
+              onChange={(e) => {
+                const smd = e.target.value;
+                setRawMarkdown(smd);
+                setAlexa(speech.toSSML(smd, { platform: "amazon-alexa" }));
+                setGoogle(
+                  speech.toSSML(smd, { platform: "google-assistant" })
+                );
+                setAzure(speech.toSSML(smd, { platform: "microsoft-azure" }));
+                setSapi(speech.toSSML(smd, { platform: "microsoft-sapi" }));
+                setPolly(speech.toSSML(smd, { platform: "amazon-polly" }));
+                setPollyNeural(
+                  speech.toSSML(smd, { platform: "amazon-polly-neural" })
+                );
+                setW3c(speech.toSSML(smd, { platform: "w3c" }));
+                setElevenlabs(speech.toSSML(smd, { platform: "elevenlabs" }));
+                setPlaintext(speech.toText(smd));
+              }}
+              placeholder="Type Speech Markdown here... Examples:
+(pecan)/'pi.kæn/ - IPA phoneme
+(Al){aluminum} - Sub alias
+/ˈdeɪtə/ - Standalone IPA
+**strong** - Strong emphasis
+*moderate* - Moderate emphasis
+[break:'1s'] - Break"
+              style={{
+                width: "100%",
+                height: "100%",
+                fontFamily: "monospace",
+                fontSize: "14px",
+                padding: "10px",
+                border: "1px solid #ccc",
+                resize: "none",
+              }}
+            />
+          ) : (
+            <Editor
+              ref={editorRef}
+              onChange={(smd) => {
+                setRawMarkdown(smd);
+                setAlexa(speech.toSSML(smd, { platform: "amazon-alexa" }));
+                setGoogle(
+                  speech.toSSML(smd, { platform: "google-assistant" })
+                );
+                setAzure(speech.toSSML(smd, { platform: "microsoft-azure" }));
+                setSapi(speech.toSSML(smd, { platform: "microsoft-sapi" }));
+                setPolly(speech.toSSML(smd, { platform: "amazon-polly" }));
+                setPollyNeural(
+                  speech.toSSML(smd, { platform: "amazon-polly-neural" })
+                );
+                setW3c(speech.toSSML(smd, { platform: "w3c" }));
+                setElevenlabs(speech.toSSML(smd, { platform: "elevenlabs" }));
+                setPlaintext(speech.toText(smd));
+              }}
+            />
+          )}
         </div>
         {recentItems.length > 0 && (
           <div className="recents">
