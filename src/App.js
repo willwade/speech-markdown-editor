@@ -47,15 +47,16 @@ const App = () => {
             label="Raw Markdown Mode"
             onChange={(e) => {
               const newRawMode = e.target.checked;
-              setRawMode(newRawMode);
               if (newRawMode) {
                 // Switching to raw mode - get current markdown from editor
-                const currentSmd = editorRef.current.getMarkdown();
-                setRawMarkdown(currentSmd);
-              } else {
-                // Switching back to visual mode - update editor with raw markdown
-                editorRef.current.setMarkdown(rawMarkdown);
+                if (editorRef.current) {
+                  const currentSmd = editorRef.current.getMarkdown();
+                  setRawMarkdown(currentSmd);
+                }
               }
+              setRawMode(newRawMode);
+              // Note: When switching back to visual mode, the editor will remount
+              // and use the rawMarkdown state
             }}
             style={{ marginLeft: "10px" }}
           />
