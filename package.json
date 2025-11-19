@@ -12,54 +12,37 @@
     "draft-js-plugins-editor": "^3.0.0",
     "gh-pages": "^6.3.0",
     "immutable": "^4.3.7",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "react-input-autosize": "^2.2.2",
-    "react-scripts": "3.3.1",
     "slate": "^0.58.4",
     "slate-history": "^0.58.4",
     "slate-react": "^0.58.4",
     "speechmarkdown-js": "^2.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "vite",
+    "build": "vite build",
+    "test": "vitest run",
+    "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "format": "prettier --write \"src/**/*.{js,jsx,json,css,scss,md}\"",
     "format:check": "prettier --check \"src/**/*.{js,jsx,json,css,scss,md}\"",
     "lint": "eslint src --ext .js,.jsx",
     "lint:fix": "eslint src --ext .js,.jsx --fix"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ],
-    "rules": {
-      "no-unused-vars": "warn",
-      "react-hooks/exhaustive-deps": "warn"
-    }
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-flowtype": "^8.0.3",
     "eslint-plugin-prettier": "^5.5.4",
+    "jsdom": "^27.2.0",
     "prettier": "^3.6.2",
     "sass": "^1.93.3",
-    "sass-loader": "^10.5.2"
+    "sass-loader": "^10.5.2",
+    "vite": "^7.2.2",
+    "vite-plugin-svgr": "^4.5.0",
+    "vitest": "^4.0.10"
   }
 }
