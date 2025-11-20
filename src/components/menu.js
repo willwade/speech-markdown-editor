@@ -20,7 +20,7 @@ export const MenuButton = (props) => {
             <MenuItem
               active={true}
               text="address"
-              onClick={(e) =>
+              onClick={() =>
                 onSelect({
                   type: "address",
                 })
@@ -28,129 +28,129 @@ export const MenuButton = (props) => {
             />
             <MenuItem
               text="audio"
-              onClick={(e) => onSelect({ type: "audio" })}
+              onClick={() => onSelect({ type: "audio" })}
             />
             <MenuItem text="break">
               <MenuItem
                 text="none"
-                onClick={(e) => onSelect({ type: "break", break: "none" })}
+                onClick={() => onSelect({ type: "break", break: "none" })}
               />
               <MenuItem
                 text="x-weak"
-                onClick={(e) => onSelect({ type: "break", break: "x-weak" })}
+                onClick={() => onSelect({ type: "break", break: "x-weak" })}
               />
               <MenuItem
                 text="weak"
-                onClick={(e) => onSelect({ type: "break", break: "weak" })}
+                onClick={() => onSelect({ type: "break", break: "weak" })}
               />
               <MenuItem
                 text="medium"
-                onClick={(e) => onSelect({ type: "break", break: "medium" })}
+                onClick={() => onSelect({ type: "break", break: "medium" })}
               />
               <MenuItem
                 text="strong"
-                onClick={(e) => onSelect({ type: "break", break: "strong" })}
+                onClick={() => onSelect({ type: "break", break: "strong" })}
               />
               <MenuItem
                 text="x-strong"
-                onClick={(e) => onSelect({ type: "break", break: "x-strong" })}
+                onClick={() => onSelect({ type: "break", break: "x-strong" })}
               />
             </MenuItem>
             <MenuItem
               text="cardinal"
-              onClick={(e) => onSelect({ type: "cardinal" })}
+              onClick={() => onSelect({ type: "cardinal" })}
             />
             <MenuItem
               text="characters"
-              onClick={(e) => onSelect({ type: "characters" })}
+              onClick={() => onSelect({ type: "characters" })}
             />
             <MenuItem text="date">
               <MenuItem
                 text="mdy"
-                onClick={(e) => onSelect({ type: "date", date: "mdy" })}
+                onClick={() => onSelect({ type: "date", date: "mdy" })}
               />
               <MenuItem
                 text="dmy"
-                onClick={(e) => onSelect({ type: "date", date: "dmy" })}
+                onClick={() => onSelect({ type: "date", date: "dmy" })}
               />
               <MenuItem
                 text="ymd"
-                onClick={(e) => onSelect({ type: "date", date: "ymd" })}
+                onClick={() => onSelect({ type: "date", date: "ymd" })}
               />
               <MenuItem
                 text="ydm"
-                onClick={(e) => onSelect({ type: "date", date: "ydm" })}
+                onClick={() => onSelect({ type: "date", date: "ydm" })}
               />
               <MenuItem
                 text="md"
-                onClick={(e) => onSelect({ type: "date", date: "md" })}
+                onClick={() => onSelect({ type: "date", date: "md" })}
               />
               <MenuItem
                 text="dm"
-                onClick={(e) => onSelect({ type: "date", date: "dm" })}
+                onClick={() => onSelect({ type: "date", date: "dm" })}
               />
               <MenuItem
                 text="ym"
-                onClick={(e) => onSelect({ type: "date", date: "ym" })}
+                onClick={() => onSelect({ type: "date", date: "ym" })}
               />
               <MenuItem
                 text="my"
-                onClick={(e) => onSelect({ type: "date", date: "my" })}
+                onClick={() => onSelect({ type: "date", date: "my" })}
               />
               <MenuItem
                 text="y"
-                onClick={(e) => onSelect({ type: "date", date: "y" })}
+                onClick={() => onSelect({ type: "date", date: "y" })}
               />
               <MenuItem
                 text="m"
-                onClick={(e) => onSelect({ type: "date", date: "m" })}
+                onClick={() => onSelect({ type: "date", date: "m" })}
               />
               <MenuItem
                 text="d"
-                onClick={(e) => onSelect({ type: "date", date: "d" })}
+                onClick={() => onSelect({ type: "date", date: "d" })}
               />
             </MenuItem>
             <MenuItem
               text="defaults"
-              onClick={(e) => onSelect({ type: "defaults" })}
+              onClick={() => onSelect({ type: "defaults" })}
             />
             <MenuItem text="disappointed">
               <MenuItem
                 text="medium"
-                onClick={(e) =>
+                onClick={() =>
                   onSelect({ type: "disappointed", disappointed: "medium" })
                 }
               />
               <MenuItem
                 text="low"
-                onClick={(e) =>
+                onClick={() =>
                   onSelect({ type: "disappointed", disappointed: "low" })
                 }
               />
               <MenuItem
                 text="high"
-                onClick={(e) =>
+                onClick={() =>
                   onSelect({ type: "disappointed", disappointed: "high" })
                 }
               />
             </MenuItem>
-            <MenuItem text="dj" onClick={(e) => onSelect({ type: "dj" })} />
+            <MenuItem text="dj" onClick={() => onSelect({ type: "dj" })} />
             <MenuItem text="emphasis">
               <MenuItem
                 text="strong"
-                onClick={(e) =>
+                onClick={() =>
                   onSelect({ type: "emphasis", emphasis: "strong" })
                 }
               />
               <MenuItem
                 text="moderate"
-                onClick={(e) =>
+                onClick={() =>
                   onSelect({ type: "emphasis", emphasis: "moderate" })
                 }
               />
               <MenuItem
                 text="reduced"
-                onClick={(e) =>
+                onClick={() =>
                   onSelect({ type: "emphasis", emphasis: "reduced" })
                 }
               />
@@ -160,115 +160,113 @@ export const MenuButton = (props) => {
             <MenuItem text="excited">
               <MenuItem
                 text="medium"
-                onClick={(e) =>
-                  onSelect({ type: "excited", excited: "medium" })
-                }
+                onClick={() => onSelect({ type: "excited", excited: "medium" })}
               />
               <MenuItem
                 text="low"
-                onClick={(e) => onSelect({ type: "excited", excited: "low" })}
+                onClick={() => onSelect({ type: "excited", excited: "low" })}
               />
               <MenuItem
                 text="high"
-                onClick={(e) => onSelect({ type: "excited", excited: "high" })}
+                onClick={() => onSelect({ type: "excited", excited: "high" })}
               />
             </MenuItem>
             <MenuItem
               text="expletive / bleep"
-              onClick={(e) => onSelect({ type: "expletive" })}
+              onClick={() => onSelect({ type: "expletive" })}
             />
             <MenuItem
               text="fraction"
-              onClick={(e) => onSelect({ type: "fraction" })}
+              onClick={() => onSelect({ type: "fraction" })}
             />
             <MenuItem
               text="interjection"
-              onClick={(e) => onSelect({ type: "interjection" })}
+              onClick={() => onSelect({ type: "interjection" })}
             />
-            <MenuItem text="ipa" onClick={(e) => onSelect({ type: "ipa" })} />
+            <MenuItem text="ipa" onClick={() => onSelect({ type: "ipa" })} />
             <MenuItem
               text="lang (modifier)"
-              onClick={(e) => onSelect({ type: "voice", lang: "en-US" })}
+              onClick={() => onSelect({ type: "voice", lang: "en-US" })}
             />
             <MenuItem
               text="lang (section)"
-              onClick={(e) => onSelect({ type: "lang", lang: "en-US" })}
+              onClick={() => onSelect({ type: "lang", lang: "en-US" })}
             />
-            <MenuItem text="mark" onClick={(e) => onSelect({ type: "mark" })} />
+            <MenuItem text="mark" onClick={() => onSelect({ type: "mark" })} />
             <MenuItem
               text="newscaster"
-              onClick={(e) => onSelect({ type: "newscaster" })}
+              onClick={() => onSelect({ type: "newscaster" })}
             />
             <MenuItem
               text="number"
-              onClick={(e) => onSelect({ type: "number" })}
+              onClick={() => onSelect({ type: "number" })}
             />
             <MenuItem
               text="ordinal"
-              onClick={(e) => onSelect({ type: "ordinal" })}
+              onClick={() => onSelect({ type: "ordinal" })}
             />
             <MenuItem
               text="phone"
-              onClick={(e) => onSelect({ type: "phone" })}
+              onClick={() => onSelect({ type: "phone" })}
             />
           </Menu>
           <Menu>
             <MenuItem text="pitch">
               <MenuItem
                 text="x-low"
-                onClick={(e) => onSelect({ type: "voice", pitch: "x-low" })}
+                onClick={() => onSelect({ type: "voice", pitch: "x-low" })}
               />
               <MenuItem
                 text="low"
-                onClick={(e) => onSelect({ type: "voice", pitch: "low" })}
+                onClick={() => onSelect({ type: "voice", pitch: "low" })}
               />
               <MenuItem
                 text="medium"
-                onClick={(e) => onSelect({ type: "voice", pitch: "medium" })}
+                onClick={() => onSelect({ type: "voice", pitch: "medium" })}
               />
               <MenuItem
                 text="high"
-                onClick={(e) => onSelect({ type: "voice", pitch: "high" })}
+                onClick={() => onSelect({ type: "voice", pitch: "high" })}
               />
               <MenuItem
                 text="x-high"
-                onClick={(e) => onSelect({ type: "voice", pitch: "x-high" })}
+                onClick={() => onSelect({ type: "voice", pitch: "x-high" })}
               />
             </MenuItem>
             <MenuItem text="rate">
               <MenuItem
                 text="x-slow"
-                onClick={(e) => onSelect({ type: "voice", rate: "x-slow" })}
+                onClick={() => onSelect({ type: "voice", rate: "x-slow" })}
               />
               <MenuItem
                 text="slow"
-                onClick={(e) => onSelect({ type: "voice", rate: "slow" })}
+                onClick={() => onSelect({ type: "voice", rate: "slow" })}
               />
               <MenuItem
                 text="medium"
-                onClick={(e) => onSelect({ type: "voice", rate: "medium" })}
+                onClick={() => onSelect({ type: "voice", rate: "medium" })}
               />
               <MenuItem
                 text="fast"
-                onClick={(e) => onSelect({ type: "voice", rate: "fast" })}
+                onClick={() => onSelect({ type: "voice", rate: "fast" })}
               />
               <MenuItem
                 text="x-fast"
-                onClick={(e) => onSelect({ type: "voice", rate: "x-fast" })}
+                onClick={() => onSelect({ type: "voice", rate: "x-fast" })}
               />
             </MenuItem>
-            <MenuItem text="sub" onClick={(e) => onSelect({ type: "sub" })} />
+            <MenuItem text="sub" onClick={() => onSelect({ type: "sub" })} />
             <MenuItem text="time">
               <MenuItem
                 text="12hr"
-                onClick={(e) => onSelect({ type: "time", time: "hms12" })}
+                onClick={() => onSelect({ type: "time", time: "hms12" })}
               />
               <MenuItem
                 text="24hr"
-                onClick={(e) => onSelect({ type: "time", time: "hms24" })}
+                onClick={() => onSelect({ type: "time", time: "hms24" })}
               />
             </MenuItem>
-            <MenuItem text="unit" onClick={(e) => onSelect({ type: "unit" })} />
+            <MenuItem text="unit" onClick={() => onSelect({ type: "unit" })} />
             <MenuItem text="voice" disabled={!hasVoices}>
               {hasVoices && (
                 <div style={{ maxHeight: "300px", overflowY: "auto" }}>
@@ -276,7 +274,7 @@ export const MenuButton = (props) => {
                     <MenuItem
                       key={voice.id}
                       text={voice.name}
-                      onClick={(e) =>
+                      onClick={() =>
                         onSelect({ type: "voice", voice: voice.id })
                       }
                     />
@@ -287,7 +285,7 @@ export const MenuButton = (props) => {
             <MenuItem
               text="voice (section)"
               disabled={!hasVoices}
-              onClick={(e) => {
+              onClick={() => {
                 const defaultVoice = getDefaultVoiceForPlatform(platform);
                 onSelect({
                   type: "voicesection",
@@ -299,32 +297,32 @@ export const MenuButton = (props) => {
             <MenuItem text="volume">
               <MenuItem
                 text="silent"
-                onClick={(e) => onSelect({ type: "voice", volume: "silent" })}
+                onClick={() => onSelect({ type: "voice", volume: "silent" })}
               />
               <MenuItem
                 text="x-soft"
-                onClick={(e) => onSelect({ type: "voice", volume: "x-soft" })}
+                onClick={() => onSelect({ type: "voice", volume: "x-soft" })}
               />
               <MenuItem
                 text="soft"
-                onClick={(e) => onSelect({ type: "voice", volume: "soft" })}
+                onClick={() => onSelect({ type: "voice", volume: "soft" })}
               />
               <MenuItem
                 text="medium (default)"
-                onClick={(e) => onSelect({ type: "voice", volume: "medium" })}
+                onClick={() => onSelect({ type: "voice", volume: "medium" })}
               />
               <MenuItem
                 text="loud"
-                onClick={(e) => onSelect({ type: "voice", volume: "loud" })}
+                onClick={() => onSelect({ type: "voice", volume: "loud" })}
               />
               <MenuItem
                 text="x-loud"
-                onClick={(e) => onSelect({ type: "voice", volume: "x-loud" })}
+                onClick={() => onSelect({ type: "voice", volume: "x-loud" })}
               />
             </MenuItem>
             <MenuItem
               text="whisper"
-              onClick={(e) => onSelect({ type: "whisper" })}
+              onClick={() => onSelect({ type: "whisper" })}
             />
           </Menu>
         </div>
