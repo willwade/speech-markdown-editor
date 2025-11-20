@@ -142,8 +142,9 @@ const App = () => {
         {recentItems.length > 0 && (
           <div className="recents">
             <span>Recent:&nbsp;</span>
-            {recentItems.map((recent) => (
+            {recentItems.map((recent, index) => (
               <Tag
+                key={index}
                 interactive={true}
                 onClick={() => {
                   editorRef.current.insert(recent.node);

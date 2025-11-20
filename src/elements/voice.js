@@ -131,7 +131,7 @@ export const VoiceElement = ({
                               <MenuItem
                                 key={value.id}
                                 text={value.name}
-                                onClick={(e) => {
+                                onClick={() => {
                                   const path = ReactEditor.findPath(
                                     editor,
                                     element
@@ -149,7 +149,7 @@ export const VoiceElement = ({
                               <MenuItem
                                 key={value}
                                 text={value}
-                                onClick={(e) => {
+                                onClick={() => {
                                   const path = ReactEditor.findPath(
                                     editor,
                                     element
@@ -190,11 +190,11 @@ export const VoiceElement = ({
                   }
                 >
                   <span className="options">
-                    "
+                    &quot;
                     {isVoiceModifier
                       ? displayVoiceName
                       : element[name] || values[0]}
-                    "
+                    &quot;
                   </span>
                 </Popover>
                 {index < availableModifier.length - 1 && ";"}
@@ -216,7 +216,7 @@ export const VoiceElement = ({
                     key={modifier.name}
                     title={modifier.name}
                     text={modifier.name}
-                    onClick={(e) => {
+                    onClick={() => {
                       const path = ReactEditor.findPath(editor, element);
                       const firstValue =
                         modifier.name === "voice"

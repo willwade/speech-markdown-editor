@@ -1,5 +1,4 @@
 import React from "react";
-import { findDOMNode } from "react-dom";
 import AutosizeInput from "react-input-autosize";
 import { useRef, useImperativeHandle, forwardRef } from "react";
 
@@ -11,7 +10,7 @@ function AutoGrowInputComponent(props, ref) {
   useImperativeHandle(ref, () => {
     return {
       focus: (end = false) => {
-        if (document.activeElement !== findDOMNode(innerInputRef.current)) {
+        if (document.activeElement !== innerInputRef.current) {
           if (!end) {
             innerInputRef.current.focus();
             innerInputRef.current.setSelectionRange(0, 0);

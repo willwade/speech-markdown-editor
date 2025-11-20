@@ -392,8 +392,8 @@ export const HelpButton = () => {
                       }}
                     >
                       <li>
-                        <code style={codeStyle}>(text)/'IPA'/</code> - IPA
-                        phoneme
+                        <code style={codeStyle}>(text)/&apos;IPA&apos;/</code> -
+                        IPA phoneme
                       </li>
                       <li>
                         <code style={codeStyle}>(text)&#123;alias&#125;</code> -
@@ -411,7 +411,7 @@ export const HelpButton = () => {
                         emphasis
                       </li>
                       <li>
-                        <code style={codeStyle}>[break:'1s']</code> -
+                        <code style={codeStyle}>[break:&apos;1s&apos;]</code> -
                         Break/pause
                       </li>
                     </ul>
@@ -430,8 +430,8 @@ export const HelpButton = () => {
                         </span>{" "}
                         Tip:
                       </strong>{" "}
-                      Use "Raw Markdown Mode" toggle to type short-form syntax
-                      directly!
+                      Use &quot;Raw Markdown Mode&quot; toggle to type
+                      short-form syntax directly!
                     </div>
                   </Card>
                 )}

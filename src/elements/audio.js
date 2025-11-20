@@ -19,7 +19,7 @@ export const AudioElement = ({ attributes, children, element }) => {
 
   return (
     <span {...attributes} contentEditable={false}>
-      !["
+      ![&quot;
       {
         <AutoGrowInput
           value={value}
@@ -41,7 +41,7 @@ export const AudioElement = ({ attributes, children, element }) => {
         />
       }
       {children}
-      "]
+      &quot;]
     </span>
   );
 };

@@ -29,7 +29,7 @@ export const SectionElement = ({ attributes, children, element, sections }) => {
       {sections.map((section) => {
         const { name, values } = section;
         return (
-          <React.Fragment>
+          <React.Fragment key={name}>
             <span>{name}</span>
             {values && (
               <React.Fragment>
@@ -37,11 +37,12 @@ export const SectionElement = ({ attributes, children, element, sections }) => {
                 <Popover
                   content={
                     <Menu>
-                      {values.map((value) => {
+                      {values.map((value, idx) => {
                         return value ? (
                           <MenuItem
+                            key={value}
                             text={value}
-                            onClick={(e) => {
+                            onClick={() => {
                               const path = ReactEditor.findPath(
                                 editor,
                                 element
@@ -54,7 +55,7 @@ export const SectionElement = ({ attributes, children, element, sections }) => {
                             }}
                           />
                         ) : (
-                          <React.Fragment>
+                          <React.Fragment key={`input-${idx}`}>
                             <MenuDivider />
                             <InputGroup
                               placeholder="1s"
@@ -79,7 +80,7 @@ export const SectionElement = ({ attributes, children, element, sections }) => {
                 >
                   {
                     <span className="options">
-                      "{element[name] || values[0]}"
+                      &quot;{element[name] || values[0]}&quot;
                     </span>
                   }
                 </Popover>

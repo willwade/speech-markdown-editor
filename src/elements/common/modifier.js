@@ -74,7 +74,7 @@ export const ModifierElement = ({
       {availableModifier.map((modifier, index) => {
         const { name, values } = modifier;
         return (
-          <React.Fragment>
+          <React.Fragment key={name}>
             <span>{name}</span>
             {values && (
               <React.Fragment>
@@ -83,11 +83,12 @@ export const ModifierElement = ({
                   content={
                     <div style={{ maxHeight: "300px", overflowY: "auto" }}>
                       <Menu>
-                        {values.map((value) => {
+                        {values.map((value, idx) => {
                           return value ? (
                             <MenuItem
+                              key={value}
                               text={value}
-                              onClick={(e) => {
+                              onClick={() => {
                                 const path = ReactEditor.findPath(
                                   editor,
                                   element
@@ -100,7 +101,7 @@ export const ModifierElement = ({
                               }}
                             />
                           ) : (
-                            <React.Fragment>
+                            <React.Fragment key={`input-${idx}`}>
                               {values.length > 1 && <MenuDivider />}
                               <InputGroup
                                 placeholder="1s"
@@ -126,7 +127,7 @@ export const ModifierElement = ({
                 >
                   {
                     <span className="options">
-                      "{element[name] || values[0]}"
+                      &quot;{element[name] || values[0]}&quot;
                     </span>
                   }
                 </Popover>
@@ -148,16 +149,18 @@ export const ModifierElement = ({
                 .map((modifier) => {
                   return (
                     <MenuItem
+                      key={modifier.name}
                       title={modifier.name}
                       text={modifier.name}
                       active={false}
                     >
                       <div style={{ maxHeight: "300px", overflowY: "auto" }}>
-                        {(modifier.values || []).map((value) => {
+                        {(modifier.values || []).map((value, idx) => {
                           return value ? (
                             <MenuItem
+                              key={value}
                               text={value}
-                              onClick={(e) => {
+                              onClick={() => {
                                 const path = ReactEditor.findPath(
                                   editor,
                                   element
@@ -170,7 +173,7 @@ export const ModifierElement = ({
                               }}
                             />
                           ) : (
-                            <React.Fragment>
+                            <React.Fragment key={`input-${idx}`}>
                               {modifier.values.length > 1 && <MenuDivider />}
                               <InputGroup
                                 placeholder="1s"
